@@ -1,6 +1,10 @@
 :package: `gbf-roomfinder-parse`
 ---
-<!-- logo here -->
+<p align="right">
+  <a href="https://npmjs.org/package/gbf-roomfinder-parse">
+    <img src="https://img.shields.io/npm/v/gbf-roomfinder-parse.svg?style=flat-square">
+  </a>
+</p>
 
 :bookmark: Table of contents
 ---
