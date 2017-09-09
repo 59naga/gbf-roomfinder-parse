@@ -1,0 +1,48 @@
+notifications:
+  email: false
+
+# Quick boot options
+sudo: false
+cache:
+  yarn: true
+  directories:
+    - ~/.npm
+    - development/node_modules
+
+# Ignore version tags
+branches:
+  except:
+    - /^v[0-9]/
+
+env:
+  global:
+    # CODECLIMATE_REPO_TOKEN
+    - secure: DPuz6TcSDJwVmRuJB4hM4KRmYjAATy/pWgOD81TB5enmEVvWRIPyHIeB7zWxlAKISClOSYxijg63VgBM7zUtICa8uw9RGQCHb3jmNxpREXECrYFS0jbEb/fYCbdZy7Sx0Dsf2X2XD5fU53tBpjXI0UgP9i0bWC6v+4mqOJ0iFw8f7IE7TgV+BRVxkTKOE/Uw3r0pI2DbRWlcwBSAt4+9F+jS05vZkYxsVC/1SuRXlku+OlvO6kJ3ZKvplguzwMoAGJ6e7nZ1To4T5uZnJEAi0BXgtXaCwqhfmdJ9IxK0772CYYb3Wj7ftNJdCeDGium1fYGeDucA66SiUkklKt5CDCVJNKeE+OkP6jzYNaI7PLJgJAcv8Y7XiP6siGcBX/83FmaN4e5Yb7wx/CE0BhzB1OR8fNUc3fvaK9utHEBC0j8o7OPTnx8ISY9o8QEhheGd9lV8S2Ejm1t+1Lw8+qzRuIdmSfJ2spOm+GnYk23NyHPbxNvfF81grcg45DELezOq1fhvRAFJb5orTcrX6Oo3AhpkjMEgRZPUbsWztsGA4Eh+SBSNn//ArtUbXkhHO5sNb+s6n7dvGdcOBCrEio2y+Jj636XL6zDX0Xnxx+vR6sX2jvEi4Q2VDinGQruHOTS7utPXG8XALeubHDoFnlBl+9nFMYjcAxRDnN4BIYleEBo=
+    - secure: VhuzQbBUfzskutEws0UcisOkFnyN4TPHA1Up083opqkSzt6dgUDkbuThXiAGv/BsjUJRKi9LeyxkCVAV+ADj7ouafuhuyidOO4zi4t+b9i7we3eYGftG6xF9OdighDzOD1zy54V4bz9y0nm+bHKhB8am/Vm8M7yaU1+GTxiS3Do2ATVAXznc1FBOx9ma5tgj8jsuJKNxmZtbTRfjIABJ7nkEgTzRO7S3XrUbzeVqaw8NQZe6mWSJw1QQ2ndAHpUq9Ob0FZjHxSas4PoGRmd2eIBqTPMxYBL4LqZf19JhYlWzncw8DVDCXz6yY1ypJUKA+WTkqS2cfW7qH7D0V89Xytm83UePd8e3vWlg4YL+dlaqAL6G29BQuZPSQuArrENpnnkHwCSpo4d11Bi7N5O45uAVDHb0Kuq2PkLXahgzjsRWQ5b70l6dbWWweSLtFyM7Yyc0bGxjLGbBc/vhO4k+qQ45TPZkyA0AjC9Qoh7AaI8KRnNk6enT4aG3RhU4woSy8CsJ2LvoztImNXfxCFO89v6T2XvnoZrW32cKZMk6SKtTcokkAG78/FpjnQ6iGapxEVDu5uAi2N3rmUAcHw0BAMkihSsY6N3Kr/WsB9tGVjKGMcmLXKzxYkT4KXz0nitdpLrInOvvaL8tz7kB/CyV2jyi1MQn3jmkMev79/rC1Qg=
+
+# Language options
+language: node_js
+node_js:
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8.2.1
+install:
+  - cd development
+  - yarn install
+script:
+  - npm run cover
+  - npm run lint
+
+# Npm publish options
+before_deploy:
+  - npm run build
+deploy:
+  skip_cleanup: true # keep the devDependencies
+  provider: npm
+  email: i59naga@icloud.com
+  api_key:
+    secure:
+  on:
+    node: 8.2.1

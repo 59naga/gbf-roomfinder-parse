@@ -1,0 +1,26 @@
+---
+extends: airbnb-base
+parser: babel-eslint
+
+env:
+  node: true
+  mocha: true
+
+rules:
+  arrow-body-style: 1
+
+  max-len:
+    - 1
+    - 120
+
+  complexity:
+    - 1
+    - max: 10
+
+  no-bitwise:
+    - 1
+    - int32Hint: true
+
+  object-curly-newline:
+    - 1
+    - multiline: true
