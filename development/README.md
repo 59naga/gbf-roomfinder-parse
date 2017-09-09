@@ -24,6 +24,8 @@
 ---
 ```bash
 npm install gbf-roomfinder-parse --save
+# or
+yarn add gbf-roomfinder-parse
 ```
 
 :bulb: Motivation
@@ -89,12 +91,13 @@ parse('')
 ---
 Requirement global
 * NodeJS v8.2.1
-* Npm v5.3.0 (or [pnpm](https://github.com/rstacruz/pnpm))
+* Npm v5.3.0
+* Yarn v0.27.5
 
 ```bash
 git clone https://github.com/59naga/gbf-roomfinder-parse
 cd gbf-roomfinder-parse/development
-npm install
+yarn install
 
 npm test
 ```
