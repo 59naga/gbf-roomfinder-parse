@@ -9,13 +9,14 @@ function extract(str, regexp, defaultValue = '', targetIndex = 1) {
 }
 
 function extractRaid(tweet = '') {
-  const lines = tweet.split('\n').slice(1);
+  const lines = tweet.split('\n').slice();
+  lines.splice(1, 1);
   const nextLine = () => lines.shift() || '';
-  const id = extract(nextLine(), /^(?:Room ID: |ルームID：)(\w+)$/);
 
+  const id = extract(nextLine(), /^(\w+)(?: :Room ID|：ルームID)$/);
   // '募集対象：誰でもOK' -> '誰でもOK'
   // '誰でもOK' or 'Anyone' -> ''
-  const only = nextLine().replace(/^募集対象：/, '').replace(/^(誰でもOK|Anyone)$/, '');
+  const only = nextLine().replace(/^募集対象(:・目的)?：/, '').replace(/^(誰でもOK|Anyone)$/, '');
   const readyCheck = !extract(nextLine(), /^(Ready Check Disabled|承認なし)/, false);
   const max = extract(nextLine(), /^(?:Limit: |参戦人数：)(\d+)( players|人)/, 30) | 0;
   const over = extract(nextLine(), /^(?:Rank: |Rank )(\d+)(\+| 以上)/, 0) | 0;
@@ -40,10 +41,11 @@ function extractRaid(tweet = '') {
 }
 
 function extractCoop(tweet = '') {
-  const lines = tweet.split('\n').slice(1);
+  const lines = tweet.split('\n').slice();
+  lines.splice(1, 1);
   const nextLine = () => lines.shift() || '';
 
-  const id = extract(nextLine(), /^(?:Room ID: |ルームID：)(\w+)$/);
+  const id = extract(nextLine(), /^(\w+)(?: :Room ID|：ルームID)$/);
   const only = nextLine().replace(/^募集対象・目的：/, '').replace(/^(誰でもOK|Anyone)$/, '');
   const over = extract(nextLine(), /^(?:Rank: |Rank )(\d+)( or Higher| 以上)/, 0) | 0;
   const title = entities.decode(lines.join('\n'));
