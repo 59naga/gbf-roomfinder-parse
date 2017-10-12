@@ -13,7 +13,7 @@ function extractRaid(tweet = '') {
   lines.splice(1, 1);
   const nextLine = () => lines.shift() || '';
 
-  const id = extract(nextLine(), /^(\w+)(?: :Room ID|：ルームID)$/);
+  const id = extract(nextLine(), /(\w+)(?: :Room ID|：ルームID)$/);
   // '募集対象：誰でもOK' -> '誰でもOK'
   // '誰でもOK' or 'Anyone' -> ''
   const only = nextLine().replace(/^募集対象(:・目的)?：/, '').replace(/^(誰でもOK|Anyone)$/, '');
@@ -45,7 +45,7 @@ function extractCoop(tweet = '') {
   lines.splice(1, 1);
   const nextLine = () => lines.shift() || '';
 
-  const id = extract(nextLine(), /^(\w+)(?: :Room ID|：ルームID)$/);
+  const id = extract(nextLine(), /(\w+)(?: :Room ID|：ルームID)$/);
   const only = nextLine().replace(/^募集対象・目的：/, '').replace(/^(誰でもOK|Anyone)$/, '');
   const over = extract(nextLine(), /^(?:Rank: |Rank )(\d+)( or Higher| 以上)/, 0) | 0;
   const title = entities.decode(lines.join('\n'));
